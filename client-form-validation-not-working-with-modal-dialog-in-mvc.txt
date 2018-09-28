@@ -1,0 +1,18 @@
+https://stackoverflow.com/questions/23889819/client-form-validation-not-working-with-modal-dialog-in-mvc
+
+
+
+Because the form is not added to the page when the page loads, the unobtrusive validation will not pick it up. There are two ways to fix this.
+
+Include the form on the page during the initial load. This will cause the form to be recognized and validation will occur. You can throw the partial view in a hidden div. Then your JavaScript will just show the modal dialog.
+Manually register the form with the unobtrusive validation after adding it to the page. Something like $.validator.unobtrusive.parse("#id-of-the-form");
+
+Just add the following scripts in your Create form view:
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" 
+    type="text/javascript">
+</script>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" 
+    type="text/javascript">
+</script>
